@@ -38,7 +38,7 @@
         
         ?>
         <hr>
-          <a href="index.php" class="btn btn-primary">voltar</a>
+          
 
       </div>
 
