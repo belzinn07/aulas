@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -41,7 +42,7 @@
           
 
       </div>
-
+      <a href="index.php" class=" btn btn-info">Voltar para o Inicio</a>
     </div>
 
 
