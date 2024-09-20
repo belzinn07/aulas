@@ -22,8 +22,23 @@
             <input type="submit" value="Acessar" class="btn" />
             <a href="login.php">Cadastre-se</a>
         </form>
-        
-    </div>
+    </di>
+    <?php
+        include"restrito/conexao.php";
+        if($_SERVER['REQUEST_METHOD']=="POST"){
+        $nome_usuario= mysqli_real_escape_string($conexao,$_POST['nome_usuario']);
+        $email = mysqli_real_escape_string($conexao, $_POST['email']);
+        $senha =password_hash($_POST['senha'],PASSWORD_DEFAULT);
+
+        $sql= "INSERT INTO usuarios (nome_usuario, email, senha) VALUES ('$nome_usuario', '$email', '$senha')";
+        if(mysqli_query($conexao,$sql)){
+            echo"cadastrado com sucesso";
+        }else{
+            echo"error".mysqli_connect_errno($conexao);
+        }
+
+        }
+        ?>
     
 </body>
 </html>

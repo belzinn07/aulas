@@ -21,15 +21,23 @@
             <a href="cadastro.php">Cadastre-se</a>
         </form>
         <?php
-        if(isset($_POST['nome_usuario'])){//verifica se foi digitado algo no campo nome_usuario
-            $nome_usuario= $_POST['nome_usuario'];//armazena  o que foi digitado no campo nome_usuario
-            $senha= $_POST['senha'];//armazena  o que foi digitado no campo senha
-            if(($nome_usuario=="sergio") and ($senha=="gatao") ){//se for digitado essa senha redireciona para a pagina restrito
-                header( "location: restrito");//redireciona para a pagina restrito
-            }else{
-                echo"erro login";//caso não digite sergio  gatão o login é invalido
-            }
+        include"restrito/conexao.php";
+        session_start();
+        if($_SERVER['REQUEST_METHOD']=="POST"){
+        $nome_usuario= mysqli_real_escape_string($conexao,$_POST['nome_usuario']);
+        $senha =password_hash($_POST['senha'],PASSWORD_DEFAULT);
 
+        $sql= "SELECT* FROM usuarios WHERE ('$nome_usuario')";
+        $resultado= mysqli_query($conexao,$sql);
+        $usuario= mysqli_fetch_assoc($resultado);
+        if($usuario && password_verify($senha,$usuario['senha'])){
+            $_SESSION['nome_usuario']= $nome_usuario;
+            header(("location: restrito/index.php"));
+            exit();
+        
+        }else{
+            echo"erro";
+        }
 
         }
         

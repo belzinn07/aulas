@@ -1,4 +1,7 @@
 
+<?php
+include"../validar.php";//faz com que o usuario que não é admin não acesse a página 
+?>
 <!doctype html>
 <html lang="en">
 
@@ -22,6 +25,7 @@
           <p class="lead">
             <a class="btn btn-primary btn-lg" href="cadastro.php" role="button">Cadastre-se</a>
             <a class="btn btn-primary btn-lg" href="pesquisa.php" role="button">Pesquisar Cadastro</a>
+            <a class="btn btn-danger btn-lg" href="../logout.php" role="button">Sair</a><!--Botão para sair da conta-->
            
            
         </div>

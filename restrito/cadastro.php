@@ -1,4 +1,6 @@
-
+<?php
+include"../validar.php";//faz com que o usuario que não é admin não acesse a página 
+?>
 <!doctype html>
 <html lang="en">
 
