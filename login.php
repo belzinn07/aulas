@@ -25,14 +25,14 @@
         session_start();
         if($_SERVER['REQUEST_METHOD']=="POST"){
         $nome_usuario= mysqli_real_escape_string($conexao,$_POST['nome_usuario']);
-        $senha =password_hash($_POST['senha'],PASSWORD_DEFAULT);
+        $senha =$_POST['senha'];
 
         $sql= "SELECT* FROM usuarios WHERE ('$nome_usuario')";
         $resultado= mysqli_query($conexao,$sql);
         $usuario= mysqli_fetch_assoc($resultado);
         if($usuario && password_verify($senha,$usuario['senha'])){
             $_SESSION['nome_usuario']= $nome_usuario;
-            header(("location: restrito/index.php"));
+            header("location: restrito/index.php");
             exit();
         
         }else{
